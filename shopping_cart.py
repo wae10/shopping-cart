@@ -25,7 +25,27 @@ products = [
     {"id":20, "name": "Pomegranate Cranberry & Aloe Vera Enrich Drink", "department": "beverages", "aisle": "juice nectars", "price": 4.25}
 ] # based on data from Instacart: https://www.instacart.com/datasets/grocery-shopping-2017
 
-print(products)
-# pprint(products)
+# print(products)
 
 # TODO: write some Python code here to produce the desired output
+
+identifier = input("Please input a product identifier: ")
+
+product_list_length = len(products)
+
+receipt_list = []
+
+while str(identifier.upper()) != "STOP":
+
+    if identifier.upper() != "STOP" and identifier.isnumeric():
+        identifier = int(identifier)
+        if identifier >= 1 and identifier <= product_list_length:
+            receipt_list.append(products[identifier - 1]["name"])
+            identifier = input("Please input a product identifier: ")
+
+        else:
+            print("Here is your receipt: ")
+    elif identifier.upper() != "STOP" and identifier.isalpha():
+        identifier = input(("Invalid. Please input a product identifier: "))
+
+print(receipt_list)
