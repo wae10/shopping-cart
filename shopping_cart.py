@@ -55,23 +55,23 @@ while str(identifier.upper()) != "DONE":
     elif identifier.upper() != "DONE" and identifier.isalpha():
         identifier = input(("Invalid. Please input a product identifier: "))
 
-print("EVERETT FOODS PALACE")
-print()
-print("WWW.EVERETT-FOODS-PALACE.COM")
-print()
-
+print("#> ---------------------------------")
+print("#> EVERETT FOODS PALACE")
+print("#> WWW.EVERETT-FOODS-PALACE.COM")
+print("#> ---------------------------------")
 print("CHECKOUT AT: " + str(now))
-
+print("#> ---------------------------------")
 print("SELECTED PRODUCTS: ")
 subtotal = 0
 for product in range(0, len(name_list)):
     print("... " + name_list[product] + " ($" + str(format(price_list[product],'.2f')) + ")")
     subtotal = subtotal + price_list[product]
-print()
+print("#> ---------------------------------")
 print("SUBTOTAL: $" + str(format(subtotal, '.2f')))
 tax = .0875 * subtotal
 print("TAX: $" + str(format(tax, '.2f')))
 total = subtotal + tax
 print("TOTAL: $" + str(format(total, '.2f')))
-print()
+print("#> ---------------------------------")
 print("THANKS, SEE YOU AGAIN SOON!")
+print("#> ---------------------------------")
