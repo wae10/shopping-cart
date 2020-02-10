@@ -1,7 +1,8 @@
 # shopping_cart.py
 #from pprint import pprint
-import datetime
+import datetime # for date and time 
 
+# date and time calculations
 now = datetime.datetime.now().strftime("%Y-%m-%d %I:%M %p")
 
 
@@ -36,8 +37,10 @@ identifier = input("Please input a product identifier: ")
 
 product_list_length = len(products)
 
+# empty list for names of products to be added to
 name_list = []
 
+# empty list for corresponding prices to be added to
 price_list = []
 
 while str(identifier.upper()) != "DONE":
