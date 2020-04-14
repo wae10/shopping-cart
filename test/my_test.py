@@ -1,6 +1,6 @@
 # shopping-cart/my_test.py
 
-from shopping_cart import to_usd, human_friendly_timestamp, find_product
+from shopping_cart import to_usd, human_friendly_timestamp, find_product, calculate_subtotal, calculate_tax, calculate_total_price
 
 def test_to_usd():
     result = to_usd(3.50)
@@ -40,3 +40,19 @@ def test_find_product():
     price_list = []
     result = find_product(identifier, products, product_list_length, name_list, price_list)
     assert result == (['Green Chile Anytime Sauce'], [7.99])
+
+def test_calculate_subtotal():
+    price_list = [10,70,15,5]
+    result = calculate_subtotal(price_list)
+    assert result == 100
+
+def test_calculate_tax():
+    price_list = [10,70,15,5]
+    result = calculate_tax(price_list)
+    assert result == 8.75
+
+def test_calculate_total_price():
+    price_list = [10,70,15,5]
+    result = calculate_total_price(price_list)
+    assert result == 108.75
+

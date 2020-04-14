@@ -48,6 +48,27 @@ def find_product(identifier, products, product_list_length, name_list, price_lis
 
     return name_list, price_list
 
+# finding subtotal price
+def calculate_subtotal(price_list):
+    """Returns subtotal of products."""
+    subtotal = 0
+    for price in price_list:
+        subtotal += price
+    return subtotal
+
+# finding tax total
+def calculate_tax(price_list):
+    """Returns tax total of products."""
+    subtotal = calculate_subtotal(price_list)
+    tax = .0875 * subtotal
+    return tax
+
+# finding total price
+def calculate_total_price(price_list):
+    """Returns total price of products."""
+    total = calculate_subtotal(price_list) + calculate_tax(price_list)
+    return total
+
 # needed to remove from global scopep
 if __name__ == "__main__":
 
@@ -109,16 +130,12 @@ if __name__ == "__main__":
         print("CHECKOUT AT: " + human_friendly_timestamp(date))
         print("#> ---------------------------------")
         print("SELECTED PRODUCTS: ")
-        subtotal = 0
         for product in range(0, len(name_list)):
             print("... " + name_list[product] + " (" + to_usd(price_list[product]) + ")") #to_usd()
-            subtotal = subtotal + price_list[product]
         print("#> ---------------------------------")
-        print("SUBTOTAL: " + to_usd(subtotal)) # to_usd()
-        tax = .0875 * subtotal
-        print("TAX: " + to_usd(tax)) # to_usd()
-        total = subtotal + tax
-        print("TOTAL: " + to_usd(total)) # to_usd()
+        print("SUBTOTAL: " + to_usd(calculate_subtotal(price_list))) # to_usd()
+        print("TAX: " + to_usd(calculate_tax(price_list))) # to_usd()
+        print("TOTAL: " + to_usd(calculate_total_price(price_list))) # to_usd()
         print("#> ---------------------------------")
         print("THANKS, SEE YOU AGAIN SOON!")
         print("#> ---------------------------------")
