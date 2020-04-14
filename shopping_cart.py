@@ -4,6 +4,11 @@ import datetime # for date and time
 
 def enlarge(i):
     return i * 100
+
+#to US dollar currency formatting function
+def to_usd(num):
+    return "$" + str(format(num, '.2f'))
+
 # needed to remove from global scope
 if __name__ == "__main__":
 
@@ -73,14 +78,14 @@ if __name__ == "__main__":
     print("SELECTED PRODUCTS: ")
     subtotal = 0
     for product in range(0, len(name_list)):
-        print("... " + name_list[product] + " ($" + str(format(price_list[product],'.2f')) + ")")
+        print("... " + name_list[product] + " (" + to_usd(price_list[product]) + ")") #to_usd()
         subtotal = subtotal + price_list[product]
     print("#> ---------------------------------")
-    print("SUBTOTAL: $" + str(format(subtotal, '.2f')))
+    print("SUBTOTAL: " + to_usd(subtotal)) # to_usd()
     tax = .0875 * subtotal
-    print("TAX: $" + str(format(tax, '.2f')))
+    print("TAX: " + to_usd(tax)) # to_usd()
     total = subtotal + tax
-    print("TOTAL: $" + str(format(total, '.2f')))
+    print("TOTAL: " + to_usd(total)) # to_usd()
     print("#> ---------------------------------")
     print("THANKS, SEE YOU AGAIN SOON!")
     print("#> ---------------------------------")
