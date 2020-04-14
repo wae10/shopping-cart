@@ -2,15 +2,14 @@
 #from pprint import pprint
 import datetime # for date and time 
 
-def enlarge(i):
-    return i * 100
-
 #to US dollar currency formatting function
 def to_usd(num):
+    """Converts number to US Dollar format."""
     return "$" + str(format(num, '.2f'))
 
 #date and time conversion function
 def human_friendly_timestamp(date):
+    """Converts a call from the datetime module to a human friendly format."""
     output = ""
     for element in range(10):
         output += date[element]
@@ -34,6 +33,7 @@ def human_friendly_timestamp(date):
 
 # finding product function
 def find_product(identifier, products, product_list_length, name_list, price_list):
+    """Returns product and price from its correct index in the product list."""
     if str(identifier).upper() != "DONE" and str(identifier).isnumeric():
         identifier = int(identifier)
         if identifier >= 1 and identifier <= product_list_length:
