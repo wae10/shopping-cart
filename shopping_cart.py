@@ -33,25 +33,22 @@ def human_friendly_timestamp(date):
     return output
 
 # finding product function
-def find_product(identifier, product_list_length, name_list, price_list):
-    while str(identifier.upper()) != "DONE":
+def find_product(identifier, products, product_list_length, name_list, price_list):
+    if str(identifier).upper() != "DONE" and str(identifier).isnumeric():
+        identifier = int(identifier)
+        if identifier >= 1 and identifier <= product_list_length:
+            name_list.append(products[identifier - 1]["name"])
+            price_list.append(products[identifier -1]["price"])
 
-        if identifier.upper() != "DONE" and identifier.isnumeric():
-            identifier = int(identifier)
-            if identifier >= 1 and identifier <= product_list_length:
-                name_list.append(products[identifier - 1]["name"])
-                price_list.append(products[identifier -1]["price"])
-                identifier = input("Please input a product identifier: ")
+        else:
+            identifier = print(("\nInvalid. Try again.\n"))
 
-            else:
-                identifier = input(("Invalid. Please input a product identifier: "))
+    elif identifier.upper() != "DONE" and identifier.isalpha():
+        identifier = print(("\nInvalid. Try again.\n"))
 
-        elif identifier.upper() != "DONE" and identifier.isalpha():
-            identifier = input(("Invalid. Please input a product identifier: "))
-    
     return name_list, price_list
 
-# needed to remove from global scope
+# needed to remove from global scopep
 if __name__ == "__main__":
 
     # to be passed in human_friendly_timestamp() function
@@ -100,7 +97,10 @@ if __name__ == "__main__":
         # empty list for corresponding prices to be added to
         price_list = []
 
-        find_product(identifier, product_list_length, name_list, price_list)
+        while identifier.upper() != "DONE":
+            find_product(identifier, products, product_list_length, name_list, price_list)
+            identifier = input("Please input a product identifier: ")
+        
 
         print("#> ---------------------------------")
         print("#> EVERETT FOODS PALACE")
