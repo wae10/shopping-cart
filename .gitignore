@@ -1,0 +1,6 @@
+#for macs
+.DS_Store 
+
+#ignore byproducts of the testing process
+__pycache__
+.pytest_cache
