@@ -9,11 +9,40 @@ def enlarge(i):
 def to_usd(num):
     return "$" + str(format(num, '.2f'))
 
+#date and time conversion function
+def human_friendly_timestamp(date):
+    output = ""
+    for element in range(10):
+        output += date[element]
+    output += " "
+
+    if int(date[11]) >= 1 and int(date[12]) >= 3:
+        newDate = str(date[11]) + str(date[12])
+        newDate = int(newDate) - 12
+        output += str(newDate)
+        for element in range(13, 16):
+            output += date[element]
+        output += " PM"
+
+    else:
+        for element in range(16):
+            output += date[element]
+    
+        output += " PM"
+
+    return output
+
+date = str(datetime.datetime.now())
+
+print(date)
+print(human_friendly_timestamp(date))
+
+
 # needed to remove from global scope
 if __name__ == "__main__":
 
-    # date and time calculations
-    now = datetime.datetime.now().strftime("%Y-%m-%d %I:%M %p")
+    # to be passed in human_friendly_timestamp() function
+    date = str(datetime.datetime.now())
 
     products = [
         {"id":1, "name": "Chocolate Sandwich Cookies", "department": "snacks", "aisle": "cookies cakes", "price": 3.50},
@@ -73,7 +102,7 @@ if __name__ == "__main__":
     print("#> EVERETT FOODS PALACE")
     print("#> WWW.EVERETT-FOODS-PALACE.COM")
     print("#> ---------------------------------")
-    print("CHECKOUT AT: " + str(now))
+    print("CHECKOUT AT: " + human_friendly_timestamp(date))
     print("#> ---------------------------------")
     print("SELECTED PRODUCTS: ")
     subtotal = 0
