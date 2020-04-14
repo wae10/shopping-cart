@@ -25,18 +25,31 @@ def human_friendly_timestamp(date):
         output += " PM"
 
     else:
+        output = ""
         for element in range(16):
             output += date[element]
-    
-        output += " PM"
+        output += " AM"
 
     return output
 
-date = str(datetime.datetime.now())
+# finding product function
+def find_product(identifier, product_list_length, name_list, price_list):
+    while str(identifier.upper()) != "DONE":
 
-print(date)
-print(human_friendly_timestamp(date))
+        if identifier.upper() != "DONE" and identifier.isnumeric():
+            identifier = int(identifier)
+            if identifier >= 1 and identifier <= product_list_length:
+                name_list.append(products[identifier - 1]["name"])
+                price_list.append(products[identifier -1]["price"])
+                identifier = input("Please input a product identifier: ")
 
+            else:
+                identifier = input(("Invalid. Please input a product identifier: "))
+
+        elif identifier.upper() != "DONE" and identifier.isalpha():
+            identifier = input(("Invalid. Please input a product identifier: "))
+    
+    return name_list, price_list
 
 # needed to remove from global scope
 if __name__ == "__main__":
@@ -73,48 +86,42 @@ if __name__ == "__main__":
 
     # TODO: write some Python code here to produce the desired output
 
-    identifier = input("Please input a product identifier: ")
+    print("Welcome to the Everett Foods Palace Register System. Please input desired identifier from the products list. Enter 'done' when finished.")
+    response = input("\nReady to proceed? [Y/N] ")
 
-    product_list_length = len(products)
+    if response.upper() == "Y":
+        identifier = input("Please input a product identifier: ")
 
-    # empty list for names of products to be added to
-    name_list = []
+        product_list_length = len(products)
 
-    # empty list for corresponding prices to be added to
-    price_list = []
+        # empty list for names of products to be added to
+        name_list = []
 
-    while str(identifier.upper()) != "DONE":
+        # empty list for corresponding prices to be added to
+        price_list = []
 
-        if identifier.upper() != "DONE" and identifier.isnumeric():
-            identifier = int(identifier)
-            if identifier >= 1 and identifier <= product_list_length:
-                name_list.append(products[identifier - 1]["name"])
-                price_list.append(products[identifier -1]["price"])
-                identifier = input("Please input a product identifier: ")
+        find_product(identifier, product_list_length, name_list, price_list)
 
-            else:
-                identifier = input(("Invalid. Please input a product identifier: "))
+        print("#> ---------------------------------")
+        print("#> EVERETT FOODS PALACE")
+        print("#> WWW.EVERETT-FOODS-PALACE.COM")
+        print("#> ---------------------------------")
+        print("CHECKOUT AT: " + human_friendly_timestamp(date))
+        print("#> ---------------------------------")
+        print("SELECTED PRODUCTS: ")
+        subtotal = 0
+        for product in range(0, len(name_list)):
+            print("... " + name_list[product] + " (" + to_usd(price_list[product]) + ")") #to_usd()
+            subtotal = subtotal + price_list[product]
+        print("#> ---------------------------------")
+        print("SUBTOTAL: " + to_usd(subtotal)) # to_usd()
+        tax = .0875 * subtotal
+        print("TAX: " + to_usd(tax)) # to_usd()
+        total = subtotal + tax
+        print("TOTAL: " + to_usd(total)) # to_usd()
+        print("#> ---------------------------------")
+        print("THANKS, SEE YOU AGAIN SOON!")
+        print("#> ---------------------------------")
 
-        elif identifier.upper() != "DONE" and identifier.isalpha():
-            identifier = input(("Invalid. Please input a product identifier: "))
-
-    print("#> ---------------------------------")
-    print("#> EVERETT FOODS PALACE")
-    print("#> WWW.EVERETT-FOODS-PALACE.COM")
-    print("#> ---------------------------------")
-    print("CHECKOUT AT: " + human_friendly_timestamp(date))
-    print("#> ---------------------------------")
-    print("SELECTED PRODUCTS: ")
-    subtotal = 0
-    for product in range(0, len(name_list)):
-        print("... " + name_list[product] + " (" + to_usd(price_list[product]) + ")") #to_usd()
-        subtotal = subtotal + price_list[product]
-    print("#> ---------------------------------")
-    print("SUBTOTAL: " + to_usd(subtotal)) # to_usd()
-    tax = .0875 * subtotal
-    print("TAX: " + to_usd(tax)) # to_usd()
-    total = subtotal + tax
-    print("TOTAL: " + to_usd(total)) # to_usd()
-    print("#> ---------------------------------")
-    print("THANKS, SEE YOU AGAIN SOON!")
-    print("#> ---------------------------------")
+    else:
+        print("Exiting program.....Restart when you are ready to proceed.")

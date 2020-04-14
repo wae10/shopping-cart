@@ -11,6 +11,7 @@ def test_to_usd():
     assert result == "$3.50"
 
 def test_human_friendly_timestamp():
-    date = "2020-04-13 23:17:49.644685"
+    date = "2020-04-13 11:17:49.644685"
     result = human_friendly_timestamp(date)
-    assert result == "2020-04-13 11:17 PM"
+    assert result == "2020-04-13 11:17 AM"
+
