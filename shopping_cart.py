@@ -2,6 +2,10 @@
 #from pprint import pprint
 import datetime # for date and time 
 
+def enlarge(i):
+    return i * 100
+
+
 # date and time calculations
 now = datetime.datetime.now().strftime("%Y-%m-%d %I:%M %p")
 

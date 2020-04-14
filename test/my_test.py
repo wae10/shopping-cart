@@ -1,7 +1,7 @@
 # shopping-cart/my_test.py
 
-from shopping_cart import len
+from shopping_cart import enlarge
 
-def test_len():
-    result = len(10)
-    assert result == 10
+def test_enlarge():
+    result = enlarge(3)
+    assert result == 300
