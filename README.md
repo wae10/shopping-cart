@@ -1,5 +1,8 @@
 # shopping-cart
 
+## CI Status Badge
+[![Build Status](https://travis-ci.com/wae10/shopping-cart.svg?branch=cleanup)](https://travis-ci.com/wae10/shopping-cart)
+
 create .travis.yml file in root directory with these contents:
 
     dist: xenial
@@ -11,18 +14,15 @@ create .travis.yml file in root directory with these contents:
     script:
     - pytest
 
-## CI Status Badge
-[![Build Status](https://travis-ci.com/wae10/shopping-cart.svg?branch=cleanup)](https://travis-ci.com/wae10/shopping-cart)
-
 pip install pytest
 
-create test folder, my_test.py
+## create test folder, my_test.py inside test folder
 
-create conftest.py file for pytest
+## create conftest.py file in root directory for pytest
 
-run: pytest
+to run: pytest
 
-optional:
+## optional:
 
     pip install coverage
 
